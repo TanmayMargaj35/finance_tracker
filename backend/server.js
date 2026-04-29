@@ -11,6 +11,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ✅ Add this route
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
 app.use("/api/expenses", expenseRoutes);
 
 mongoose
