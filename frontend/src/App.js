@@ -11,6 +11,7 @@ const App = () => {
   // Replace with your live Render backend URL
   const BASE_URL = "https://finance-tracker-bkqo.onrender.com";
 
+  
   const fetchExpenses = async () => {
     const res = await axios.get(`${BASE_URL}/api/expenses`);
     setExpenses(res.data);
