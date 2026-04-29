@@ -1,0 +1,25 @@
+import express from "express";
+import Expense from "../models/Expense.js";
+
+const router = express.Router();
+
+// GET all expenses
+router.get("/", async (req, res) => {
+  const expenses = await Expense.find().sort({ date: -1 });
+  res.json(expenses);
+});
+
+// POST new expense
+router.post("/", async (req, res) => {
+  const expense = new Expense(req.body);
+  await expense.save();
+  res.json(expense);
+});
+
+// DELETE expense
+router.delete("/:id", async (req, res) => {
+  await Expense.findByIdAndDelete(req.params.id);
+  res.json({ message: "Deleted successfully" });
+});
+
+export default router;
